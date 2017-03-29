@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Score Keeper</string>
+
+    <string name="player_a_name">Player A</string>
+    <string name="player_b_name">Player B</string>
+
+    <string name="header_set">Set</string>
+    <string name="header_gameScore">Game</string>
+    <string name="header_addBTN">Add</string>
+
+    <string name="BTN_add_point">Point</string>
+    <string name="BTN_add_fault">Fault</string>
+    <string name="BTN_reset">New Match</string>
+    <string name="BTN_next_game">Next</string>
+
+    <string name="status_text">...</string>
+</resources>
