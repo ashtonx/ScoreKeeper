@@ -13,5 +13,6 @@
     <string name="BTN_reset">New Match</string>
     <string name="BTN_next_game">Next</string>
 
-    <string name="status_text">...</string>
+    <string name="status_text">&#8230;</string>
+    <string name="empty_score">0</string>
 </resources>

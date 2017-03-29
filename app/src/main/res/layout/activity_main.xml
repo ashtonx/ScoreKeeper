@@ -9,7 +9,7 @@
     android:id="@+id/activity_main"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -45,7 +45,7 @@
         <TextView
             android:id="@+id/tv_set1_a"
             style="@style/TXTsetScoreDisplay"
-            android:text="0"/>
+            android:text="@string/empty_score"/>
 
         <View
             style="@style/divider_set"/>
@@ -53,7 +53,7 @@
         <TextView
             android:id="@+id/tv_set1_b"
             style="@style/TXTsetScoreDisplay"
-            android:text="0"/>
+            android:text="@string/empty_score"/>
     </LinearLayout>
 
     <LinearLayout
@@ -62,7 +62,7 @@
         <TextView
             android:id="@+id/tv_set2_a"
             style="@style/TXTsetScoreDisplay"
-            android:text="0"/>
+            android:text="@string/empty_score"/>
 
         <View
             style="@style/divider_set"/>
@@ -70,7 +70,7 @@
         <TextView
             android:id="@+id/tv_set2_b"
             style="@style/TXTsetScoreDisplay"
-            android:text="0"/>
+            android:text="@string/empty_score"/>
     </LinearLayout>
 
     <LinearLayout
@@ -79,7 +79,7 @@
         <TextView
             android:id="@+id/tv_set3_a"
             style="@style/TXTsetScoreDisplay"
-            android:text="0"/>
+            android:text="@string/empty_score"/>
 
         <View
             style="@style/divider_set"/>
@@ -87,7 +87,7 @@
         <TextView
             android:id="@+id/tv_set3_b"
             style="@style/TXTsetScoreDisplay"
-            android:text="0"/>
+            android:text="@string/empty_score"/>
     </LinearLayout>
 
     <!--SCORE-->
@@ -101,7 +101,7 @@
         <TextView
             android:id="@+id/tv_points_a"
             style="@style/TXTscoreDisplay"
-            android:text="0"/>
+            android:text="@string/empty_score"/>
 
         <View
             style="@style/divider"/>
@@ -110,7 +110,7 @@
         <TextView
             android:id="@+id/tv_points_b"
             style="@style/TXTscoreDisplay"
-            android:text="0"/>
+            android:text="@string/empty_score"/>
     </LinearLayout>
 
     <TextView
