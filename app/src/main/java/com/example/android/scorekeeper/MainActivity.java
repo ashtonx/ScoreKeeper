@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-//TODO OnClickListener
-//TODO dimens.xml
 public class MainActivity extends AppCompatActivity {
     public Match currMatch=new Match();
     private static final String TAG_RETAINED_FRAGMENT_MATCH = "RetainedFragment Match";
