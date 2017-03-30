@@ -1,5 +1,7 @@
 package com.example.android.scorekeeper;
 
+
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,28 +9,46 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+//TODO Move findViewByID to oncreate
+//TODO OnClickListener
+//TODO dimens.xml
 public class MainActivity extends AppCompatActivity {
-
-    Match currMatch = new Match();
+    public Match currMatch=new Match();
+    private static final String TAG_RETAINED_FRAGMENT_MATCH = "RetainedFragment Match";
+    private RetainedFragment<Match> mRetainedFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //find fragment on restart
+        FragmentManager fm = getFragmentManager();
+        mRetainedFragment = (RetainedFragment<Match>) fm.findFragmentByTag(TAG_RETAINED_FRAGMENT_MATCH);
+        //create fragment and data first time
+        if(mRetainedFragment == null){
+            mRetainedFragment = new RetainedFragment<>();
+            fm.beginTransaction().add(mRetainedFragment,TAG_RETAINED_FRAGMENT_MATCH).commit();
+            mRetainedFragment.setData(currMatch);
+        }
+        currMatch=mRetainedFragment.getData();
+        displayPoints();
+        displaySet();
+        gameWinCheck();
     }
+
 
     public void addPoint(View v) {
         displayStatus(""); //clear status
         switch (v.getId()) {
             case R.id.btn_point_a:
                 currMatch.addPoints('A');
-                if (currMatch.currGame.A.point == 5) gameWon('A');
                 break;
             case R.id.btn_point_b:
                 currMatch.addPoints('B');
-                if (currMatch.currGame.B.point == 5) gameWon('B');
                 break;
         }
+        gameWinCheck();
         displayPoints();
     }
 
@@ -38,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 if (currMatch.currGame.A.fault) {
                     displayStatus(currMatch.config.playerNameA + " Double Fault");
                     currMatch.addPoints('B');
-                    if (currMatch.currGame.B.point == 5) gameWon('B');
                 } else {
                     currMatch.currGame.A.fault = true;
                     currMatch.currGame.B.fault = false; //ain't sure if it can happen but can glitch
@@ -50,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 if (currMatch.currGame.B.fault) {
                     displayStatus(currMatch.config.playerNameB + " Double Fault");
                     currMatch.addPoints('A');
-                    if (currMatch.currGame.A.point == 5) gameWon('A');
                 } else {
                     currMatch.currGame.B.fault = true;
                     currMatch.currGame.A.fault = false;
                     displayStatus(currMatch.config.playerNameB + " Fault");
                 }
         }
+        gameWinCheck();
         displayPoints();
     }
 
@@ -112,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
         displaySet();
     }
 
+    public void gameWinCheck(){
+        if (currMatch.currGame.A.point == 5) gameWon('A');
+        else if (currMatch.currGame.B.point == 5) gameWon('B');
+    }
 
     public void gameWon(char player) {
         String playername = "";
@@ -167,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //seems like only reasonable way i could find that allows me to reference an int.
-    public class Point {
+    public class Point{
         public int point;
 
         Point() {
