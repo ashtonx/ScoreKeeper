@@ -12,7 +12,7 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">4.5</item>
-        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
 
     </style>
 
@@ -33,7 +33,7 @@
     <style name="TXTsetScoreDisplay" parent="defaults">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
-        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin_small</item>
         <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
@@ -42,7 +42,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
         <item name="android:textColor">@color/colorIcons</item>
-        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin_small</item>
     </style>
 
     <style name="BTNaddPoints" parent="defaults">
@@ -67,7 +67,7 @@
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
         <item name="android:gravity">center</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin_small</item>
     </style>
 
     <style name="ViewRow">
@@ -77,16 +77,16 @@
     </style>
 
     <style name="divider">
-        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_width">@dimen/divider_width</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/colorDivider</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginRight">16dp</item>
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/activity_vertical_margin_small</item>
+        <item name="android:layout_marginBottom">@dimen/divider_bottom_margin</item>
     </style>
     <style name="divider_set" parent="divider">
-        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginBottom">@dimen/divider_set_margin</item>
     </style>
 
     <style name="scroll_view">
