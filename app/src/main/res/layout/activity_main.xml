@@ -3,175 +3,172 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/scroll_view"
-    tools:context="com.example.android.scorekeeper.MainActivity"
-    android:background="@color/colorPrimary">
-<LinearLayout
-    android:id="@+id/activity_main"
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    >
-
-    <!--PLAYER NAMES-->
-    <LinearLayout
-        style="@style/ViewRow">
-
-        <TextView
-            android:id="@+id/player_a_name"
-            style="@style/TXTplayerName"
-            android:text="@string/player_a_name"/>
-
-        <View
-            style="@style/divider"/>
-
-        <TextView
-            android:id="@+id/player_b_name"
-            style="@style/TXTplayerName"
-            android:text="@string/player_b_name"/>
-    </LinearLayout>
-    <!--SET-->
-    <TextView
-        style="@style/TXTheaderDisplay"
-        android:text="@string/header_set"/>
+    android:background="@color/colorPrimary"
+    tools:context="com.example.android.scorekeeper.MainActivity">
 
     <LinearLayout
-        style="@style/ViewRow">
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        >
+
+        <!--PLAYER NAMES-->
+        <LinearLayout
+            style="@style/ViewRow">
+
+            <TextView
+                android:id="@+id/player_a_name"
+                style="@style/TXTplayerName"
+                android:text="@string/player_a_name"/>
+
+            <View
+                style="@style/divider"/>
+
+            <TextView
+                android:id="@+id/player_b_name"
+                style="@style/TXTplayerName"
+                android:text="@string/player_b_name"/>
+        </LinearLayout>
+        <!--SET-->
+        <TextView
+            style="@style/TXTheaderDisplay"
+            android:text="@string/header_set"/>
+
+        <LinearLayout
+            style="@style/ViewRow">
+
+            <TextView
+                android:id="@+id/tv_set1_a"
+                style="@style/TXTsetScoreDisplay"
+                android:text="@string/empty_score"/>
+
+            <View
+                style="@style/divider_set"/>
+
+            <TextView
+                android:id="@+id/tv_set1_b"
+                style="@style/TXTsetScoreDisplay"
+                android:text="@string/empty_score"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ViewRow">
+
+            <TextView
+                android:id="@+id/tv_set2_a"
+                style="@style/TXTsetScoreDisplay"
+                android:text="@string/empty_score"/>
+
+            <View
+                style="@style/divider_set"/>
+
+            <TextView
+                android:id="@+id/tv_set2_b"
+                style="@style/TXTsetScoreDisplay"
+                android:text="@string/empty_score"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ViewRow">
+
+            <TextView
+                android:id="@+id/tv_set3_a"
+                style="@style/TXTsetScoreDisplay"
+                android:text="@string/empty_score"/>
+
+            <View
+                style="@style/divider_set"/>
+
+            <TextView
+                android:id="@+id/tv_set3_b"
+                style="@style/TXTsetScoreDisplay"
+                android:text="@string/empty_score"/>
+        </LinearLayout>
+
+        <!--SCORE-->
+        <TextView
+            style="@style/TXTheaderDisplay"
+            android:text="@string/header_gameScore"/>
+
+        <LinearLayout
+            style="@style/ViewRow">
+
+            <TextView
+                android:id="@+id/tv_points_a"
+                style="@style/TXTscoreDisplay"
+                android:text="@string/empty_score"/>
+
+            <View
+                style="@style/divider"/>
+
+
+            <TextView
+                android:id="@+id/tv_points_b"
+                style="@style/TXTscoreDisplay"
+                android:text="@string/empty_score"/>
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_set1_a"
-            style="@style/TXTsetScoreDisplay"
-            android:text="@string/empty_score"/>
-
-        <View
-            style="@style/divider_set"/>
-
+            android:id="@+id/tv_status"
+            style="@style/TXTstatus"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/status_text"
+            android:textColor="@color/colorPrimaryLight"/>
+        <!--ADD BUTTONS-->
         <TextView
-            android:id="@+id/tv_set1_b"
-            style="@style/TXTsetScoreDisplay"
-            android:text="@string/empty_score"/>
-    </LinearLayout>
+            style="@style/TXTheaderDisplay"
+            android:text="@string/header_addBTN"/>
 
-    <LinearLayout
-        style="@style/ViewRow">
+        <LinearLayout
+            style="@style/ViewRow">
 
-        <TextView
-            android:id="@+id/tv_set2_a"
-            style="@style/TXTsetScoreDisplay"
-            android:text="@string/empty_score"/>
+            <Button
+                android:id="@+id/btn_point_a"
+                style="@style/BTNaddPoints"
+                android:text="@string/BTN_add_point"/>
 
-        <View
-            style="@style/divider_set"/>
+            <View
+                style="@style/divider"/>
 
-        <TextView
-            android:id="@+id/tv_set2_b"
-            style="@style/TXTsetScoreDisplay"
-            android:text="@string/empty_score"/>
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_point_b"
+                style="@style/BTNaddPoints"
+                android:text="@string/BTN_add_point"/>
+        </LinearLayout>
 
-    <LinearLayout
-        style="@style/ViewRow">
+        <LinearLayout
+            style="@style/ViewRow">
 
-        <TextView
-            android:id="@+id/tv_set3_a"
-            style="@style/TXTsetScoreDisplay"
-            android:text="@string/empty_score"/>
+            <Button
+                android:id="@+id/btn_fault_a"
+                style="@style/BTNaddPoints"
+                android:text="@string/BTN_add_fault"
+                />
 
-        <View
-            style="@style/divider_set"/>
+            <View
+                style="@style/divider"/>
 
-        <TextView
-            android:id="@+id/tv_set3_b"
-            style="@style/TXTsetScoreDisplay"
-            android:text="@string/empty_score"/>
-    </LinearLayout>
-
-    <!--SCORE-->
-    <TextView
-        style="@style/TXTheaderDisplay"
-        android:text="@string/header_gameScore"/>
-
-    <LinearLayout
-        style="@style/ViewRow">
-
-        <TextView
-            android:id="@+id/tv_points_a"
-            style="@style/TXTscoreDisplay"
-            android:text="@string/empty_score"/>
-
-        <View
-            style="@style/divider"/>
-
-
-        <TextView
-            android:id="@+id/tv_points_b"
-            style="@style/TXTscoreDisplay"
-            android:text="@string/empty_score"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_status"
-        style="@style/TXTstatus"
-        android:text="@string/status_text"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorPrimaryLight"/>
-    <!--ADD BUTTONS-->
-    <TextView
-        style="@style/TXTheaderDisplay"
-        android:text="@string/header_addBTN"/>
-
-    <LinearLayout
-        style="@style/ViewRow">
+            <Button
+                android:id="@+id/btn_fault_b"
+                style="@style/BTNaddPoints"
+                android:text="@string/BTN_add_fault"/>
+        </LinearLayout>
+        <!--STATUS-->
+        <Button
+            android:id="@+id/btn_next_game"
+            style="@style/OtherButtons"
+            android:text="@string/BTN_next_game"
+            android:visibility="gone"/>
 
         <Button
-            android:id="@+id/btn_point_a"
-            style="@style/BTNaddPoints"
-            android:onClick="addPoint"
-            android:text="@string/BTN_add_point"/>
-
-        <View
-            style="@style/divider"/>
-
-        <Button
-            android:id="@+id/btn_point_b"
-            style="@style/BTNaddPoints"
-            android:onClick="addPoint"
-            android:text="@string/BTN_add_point"/>
+            android:id="@+id/btn_reset"
+            style="@style/OtherButtons"
+            android:text="@string/BTN_reset"/>
     </LinearLayout>
-
-    <LinearLayout
-        style="@style/ViewRow">
-
-        <Button
-            android:id="@+id/btn_fault_a"
-            style="@style/BTNaddPoints"
-            android:onClick="addFault"
-            android:text="@string/BTN_add_fault"
-            />
-
-        <View
-            style="@style/divider"/>
-
-        <Button
-            android:id="@+id/btn_fault_b"
-            style="@style/BTNaddPoints"
-            android:onClick="addFault"
-            android:text="@string/BTN_add_fault"/>
-    </LinearLayout>
-<!--STATUS-->
-    <Button
-        android:id="@+id/btn_next_game"
-        style="@style/OtherButtons"
-        android:onClick="nextGame"
-        android:text="@string/BTN_next_game"
-        android:visibility="gone"/>
-    <Button
-        style="@style/OtherButtons"
-        android:onClick="resetMatch"
-        android:text="@string/BTN_reset"/>
-</LinearLayout>
 </ScrollView>

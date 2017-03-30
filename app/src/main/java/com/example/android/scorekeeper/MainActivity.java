@@ -62,38 +62,58 @@ public class MainActivity extends AppCompatActivity {
             status = (TextView) findViewById(R.id.tv_status);
         }
     }
-    public class ButtonsMain{
+    public class ButtonsMain implements View.OnClickListener{
         Button pointA;
         Button pointB;
         Button faultA;
         Button faultB;
         Button next;
+        Button reset;
         ButtonsMain(){
             pointA = (Button) findViewById(R.id.btn_point_a);
+            pointA.setOnClickListener(this);
             pointB = (Button) findViewById(R.id.btn_point_b);
+            pointB.setOnClickListener(this);
             faultA = (Button) findViewById(R.id.btn_fault_a);
+            faultA.setOnClickListener(this);
             faultB = (Button) findViewById(R.id.btn_fault_b);
+            faultB.setOnClickListener(this);
             next = (Button) findViewById(R.id.btn_next_game);
+            next.setOnClickListener(this);
+            reset = (Button) findViewById(R.id.btn_reset);
+            reset.setOnClickListener(this);
+        }
+        public void onClick(View v){
+            switch (v.getId()){
+                case (R.id.btn_point_a):
+                    currMatch.addPoints('A');
+                    gameWinCheck();
+                    displayPoints();
+                    break;
+                case (R.id.btn_point_b):
+                    currMatch.addPoints('B');
+                    gameWinCheck();
+                    displayPoints();
+                    break;
+                case (R.id.btn_fault_a):
+                    addFault('A');
+                    break;
+                case (R.id.btn_fault_b):
+                    addFault('B');
+                    break;
+                case (R.id.btn_next_game):
+                    nextGame();
+                    break;
+                case (R.id.btn_reset):
+                    resetMatch();
+                    break;
+            }
         }
     }
 
-    public void addPoint(View v) {
-        displayStatus(""); //clear status
-        switch (v.getId()) {
-            case R.id.btn_point_a:
-                currMatch.addPoints('A');
-                break;
-            case R.id.btn_point_b:
-                currMatch.addPoints('B');
-                break;
-        }
-        gameWinCheck();
-        displayPoints();
-    }
-
-    public void addFault(View v) {
-        switch (v.getId()) {
-            case R.id.btn_fault_a:
+    public void addFault(char player) {
+        switch (player) {
+            case 'A':
                 if (currMatch.currGame.A.fault) {
                     displayStatus(currMatch.config.playerNameA + " Double Fault");
                     currMatch.addPoints('B');
@@ -102,9 +122,8 @@ public class MainActivity extends AppCompatActivity {
                     currMatch.currGame.B.fault = false; //ain't sure if it can happen but can glitch
                     displayStatus(currMatch.config.playerNameA + " Fault");
                 }
-
                 break;
-            case R.id.btn_fault_b:
+            case 'B':
                 if (currMatch.currGame.B.fault) {
                     displayStatus(currMatch.config.playerNameB + " Double Fault");
                     currMatch.addPoints('A');
@@ -113,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     currMatch.currGame.A.fault = false;
                     displayStatus(currMatch.config.playerNameB + " Fault");
                 }
+                break;
         }
         gameWinCheck();
         displayPoints();
@@ -143,15 +163,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void displayStatus(String in) {
-
         tv.status.setText(in);
     }
 
 
-    public void resetMatch(View v) {
+    public void resetMatch() {
         displayAddButtons(true);
         displayStatus("Match reset");
-
         btn.next.setVisibility(View.INVISIBLE);
         currMatch = new Match();
         displayPoints();
@@ -195,12 +213,11 @@ public class MainActivity extends AppCompatActivity {
         displayStatus("Game, set and Match, " + playername + " wins !");
     }
 
-    public void nextGame(View v) {
-        v.setVisibility(View.INVISIBLE);
+    public void nextGame() {
+        btn.next.setVisibility(View.INVISIBLE);
         displayStatus(""); //clear status
         if (currMatch.currGame.A.point == 5) currMatch.addSet('A');
         else if (currMatch.currGame.B.point == 5) currMatch.addSet('B');
-
         if (currMatch.endMatch) finishMatch();
         else {
             displayAddButtons(true);
