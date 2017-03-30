@@ -9,19 +9,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-//TODO Move findViewByID to oncreate
 //TODO OnClickListener
 //TODO dimens.xml
 public class MainActivity extends AppCompatActivity {
     public Match currMatch=new Match();
     private static final String TAG_RETAINED_FRAGMENT_MATCH = "RetainedFragment Match";
     private RetainedFragment<Match> mRetainedFragment;
+    TextViewsMain tv;
+    ButtonsMain btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //get TextViews and buttons
+        tv = new TextViewsMain();
+        btn = new ButtonsMain();
         //find fragment on restart
         FragmentManager fm = getFragmentManager();
         mRetainedFragment = (RetainedFragment<Match>) fm.findFragmentByTag(TAG_RETAINED_FRAGMENT_MATCH);
@@ -37,6 +41,41 @@ public class MainActivity extends AppCompatActivity {
         gameWinCheck();
     }
 
+    public class TextViewsMain{
+        TextView scoreA;
+        TextView scoreB;
+        TextView[] setsA;
+        TextView[] setsB;
+        TextView status;
+        TextViewsMain(){
+            scoreA = (TextView) findViewById(R.id.tv_points_a);
+            scoreB = (TextView) findViewById(R.id.tv_points_b);
+
+            setsA = new TextView[]{(TextView) findViewById(R.id.tv_set1_a),
+                    (TextView) findViewById(R.id.tv_set2_a),
+                    (TextView) findViewById(R.id.tv_set3_a)
+            };
+            setsB = new TextView[]{(TextView) findViewById(R.id.tv_set1_b),
+                    (TextView) findViewById(R.id.tv_set2_b),
+                    (TextView) findViewById(R.id.tv_set3_b)
+            };
+            status = (TextView) findViewById(R.id.tv_status);
+        }
+    }
+    public class ButtonsMain{
+        Button pointA;
+        Button pointB;
+        Button faultA;
+        Button faultB;
+        Button next;
+        ButtonsMain(){
+            pointA = (Button) findViewById(R.id.btn_point_a);
+            pointB = (Button) findViewById(R.id.btn_point_b);
+            faultA = (Button) findViewById(R.id.btn_fault_a);
+            faultB = (Button) findViewById(R.id.btn_fault_b);
+            next = (Button) findViewById(R.id.btn_next_game);
+        }
+    }
 
     public void addPoint(View v) {
         displayStatus(""); //clear status
@@ -81,51 +120,39 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void displayPoints() {
-        TextView TVscoreA = (TextView) findViewById(R.id.tv_points_a);
-        TextView TVscoreB = (TextView) findViewById(R.id.tv_points_b);
-        TVscoreA.setText(currMatch.currGame.A.getDisplayPoints());
-        TVscoreB.setText(currMatch.currGame.B.getDisplayPoints());
+        tv.scoreA.setText(currMatch.currGame.A.getDisplayPoints());
+        tv.scoreB.setText(currMatch.currGame.B.getDisplayPoints());
     }
 
     public void displaySet() {
-        TextView[] TVsetsA = {(TextView) findViewById(R.id.tv_set1_a),
-                (TextView) findViewById(R.id.tv_set2_a),
-                (TextView) findViewById(R.id.tv_set3_a)
-        };
-        TextView[] TVsetsB = {(TextView) findViewById(R.id.tv_set1_b),
-                (TextView) findViewById(R.id.tv_set2_b),
-                (TextView) findViewById(R.id.tv_set3_b)
-        };
+
         for (int i = 0; i < currMatch.config.SETS_IN_MATCH; ++i) {
             String tmpA = String.valueOf(currMatch.score[i].A.point);
             String tmpB = String.valueOf(currMatch.score[i].B.point);
-            TVsetsA[i].setText(tmpA);
-            TVsetsB[i].setText(tmpB);
+            tv.setsA[i].setText(tmpA);
+            tv.setsB[i].setText(tmpB);
         }
     }
 
     public void displayAddButtons(boolean enabled) {
-        Button BTNpointA = (Button) findViewById(R.id.btn_point_a);
-        Button BTNpointB = (Button) findViewById(R.id.btn_point_b);
-        Button BTNfaultA = (Button) findViewById(R.id.btn_fault_a);
-        Button BTNfaultB = (Button) findViewById(R.id.btn_fault_b);
-        BTNpointA.setEnabled(enabled);
-        BTNpointB.setEnabled(enabled);
-        BTNfaultA.setEnabled(enabled);
-        BTNfaultB.setEnabled(enabled);
+
+        btn.pointA.setEnabled(enabled);
+        btn.pointB.setEnabled(enabled);
+        btn.faultA.setEnabled(enabled);
+        btn.faultB.setEnabled(enabled);
     }
 
     public void displayStatus(String in) {
-        TextView TVstatus = (TextView) findViewById(R.id.tv_status);
-        TVstatus.setText(in);
+
+        tv.status.setText(in);
     }
 
 
     public void resetMatch(View v) {
         displayAddButtons(true);
         displayStatus("Match reset");
-        Button BTNnext = (Button) findViewById(R.id.btn_next_game);
-        BTNnext.setVisibility(View.INVISIBLE);
+
+        btn.next.setVisibility(View.INVISIBLE);
         currMatch = new Match();
         displayPoints();
         displaySet();
@@ -138,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void gameWon(char player) {
         String playername = "";
-        Button BTNnext = (Button) findViewById(R.id.btn_next_game);
+
 
         switch (player) {
             case 'A':
@@ -150,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         }
         displayStatus(playername + " Wins the game.");
         displayAddButtons(false);
-        BTNnext.setVisibility(View.VISIBLE);
+        btn.next.setVisibility(View.VISIBLE);
     }
 
     public void finishMatch() {
